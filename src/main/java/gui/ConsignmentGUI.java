@@ -1,7 +1,7 @@
 package gui;
 
 import Main.Controller;
-import business.Records;
+import business.Record;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,7 +27,7 @@ public class ConsignmentGUI extends JFrame {
     double sellingPrx;
     private Controller cntr;
 
-    public ConsignmentGUI(Controller contrl, ArrayList<Records> allrecods){
+    public ConsignmentGUI(Controller contrl, ArrayList<Record> allrecods){
         this.cntr = contrl;
         consignmentListModel = new DefaultListModel();
         consignmentJlist.setModel(consignmentListModel);
@@ -38,7 +38,7 @@ public class ConsignmentGUI extends JFrame {
         setVisible(true);
 
         consignmentListModel = new DefaultListModel<>();
-        for(Records r : allrecods){
+        for(Record r : allrecods){
             consignmentListModel.addElement(r);
         }
         consignmentJlist.setModel(consignmentListModel);
@@ -76,13 +76,15 @@ public class ConsignmentGUI extends JFrame {
                         return;
                     }
                     Date date = new Date();
-                    Records r = new Records(name,intItem, artist, title, sellingPrx, date);
+
+                    Record r = new Record(name,intItem, artist, title, sellingPrx, date);
                     consignmentListModel.addElement(r);
                     cntr.addRecods(r);
 
                 }catch (NumberFormatException nfe ){
                     JOptionPane.showMessageDialog(ConsignmentGUI.this, "Enter a positive number ");
                 }
+
 
 
 

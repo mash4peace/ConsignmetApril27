@@ -1,7 +1,8 @@
 package Main;
 
-import business.Records;
-import db.RecordsDB;
+import business.Record;
+import db.RecordDB;
+import db.SaleDB;
 import gui.ConsignmentGUI;
 
 import java.util.ArrayList;
@@ -11,7 +12,8 @@ import java.util.ArrayList;
  */
 public class Controller {
     static ConsignmentGUI gui;
-    static RecordsDB rdb;
+    static RecordDB rdb;
+    static SaleDB sdb;
     public static void main(String[] args) {
         Controller contrl = new Controller();
         contrl.startApp();
@@ -20,15 +22,16 @@ public class Controller {
     }
 
     private void startApp() {
-        rdb = new RecordsDB();
+        rdb = new RecordDB();
         rdb.createTable();
+        sdb.createsSaleTable();
 
-        ArrayList<Records> allInfo = rdb.fetchAllRecords();
+        ArrayList<Record> allInfo = rdb.fetchAllRecords();
         gui = new ConsignmentGUI(this, allInfo );
 
     }
 
-    public void addRecods(Records r) {
+    public void addRecods(Record r) {
         rdb.addRecord(r);
     }
 }

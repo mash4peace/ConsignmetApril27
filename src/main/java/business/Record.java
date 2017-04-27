@@ -6,21 +6,25 @@ import java.util.Date;
 /**
  * Created by mash4 on 4/25/2017.
  */
-public class Records {
+public class Record {
     private int consignorID;
     private String consignorName;
     private int numberOfItems;
     private String artist;
     private String title;
     private double sellsPrice;
+    private double totalAmount;
+    private double paidAmount;
+    private double unpaidAmount;
 
     Date date = new Date();
+
 
 
     private static int tickedID = 1;
 
 
-    public Records(String consName, int numberOfitems, String artist, String title, double sellingPrx, Date date) {
+    public Record(String consName, int numberOfitems, String artist, String title, double sellingPrx, Date date) {
         this.consignorName = consName;
         this.numberOfItems = numberOfitems;
         this.artist = artist;
@@ -30,13 +34,29 @@ public class Records {
         this.consignorID = tickedID;
         tickedID ++;
     }
-    public Records(String consName,int consID, int numberOfitems, String artist, String title, double sellingPrx) {
+    public Record(String consName,int consID, int numberOfitems, String artist, String title, double sellingPrx) {
         this.consignorName = consName;
         this.numberOfItems = numberOfitems;
         this.artist = artist;
         this.title = title;
         this.sellsPrice = sellingPrx;
 
+    }
+    public Record(String consignorName, int consID, int numberOfItems, double sellsPrice){
+        this.consignorName = consignorName;
+        this.consignorID = consID;
+        this.numberOfItems = numberOfItems;
+        this.sellsPrice = sellsPrice;
+    }
+    public Record(int consID,String consignorName,  int numberOfItems, double sellsPrice,
+                  double totalAmount, double paidAmount, double unpaidAMount){
+        this.consignorName = consignorName;
+        this.consignorID = consID;
+        this.numberOfItems = numberOfItems;
+        this.sellsPrice = sellsPrice;
+        this.totalAmount = totalAmount;
+        this.paidAmount = paidAmount;
+        this.unpaidAmount = unpaidAMount;
     }
 
     public int getConsignorID() {
@@ -87,7 +107,10 @@ public class Records {
         this.sellsPrice = numberOfItems * sellsPrice;
     }
 
+
+
     public Date getDate() {
+
         return date;
     }
 

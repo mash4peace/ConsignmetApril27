@@ -1,6 +1,6 @@
 package db;
 
-import business.Records;
+import business.Record;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by mash4 on 4/25/2017.
  */
-public class RecordsDB {
+public class RecordDB {
     private static final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
     private static final String DB_CONNECTION_URL=  "jdbc:mysql://localhost:3306/consignment";
     private static final String USER = ("mash4peace");
@@ -22,7 +22,7 @@ public class RecordsDB {
     private static final String TITLE_COL = "title";
     private static final String SELLSpRX_COL = "sellsPrice";
 
-    public RecordsDB(){
+    public RecordDB(){
         try{
             Class.forName(JDBC_Driver);
         }catch (ClassNotFoundException cnfe){
@@ -60,7 +60,7 @@ public class RecordsDB {
 
     }
 
-    public void addRecord(Records records) {
+    public void addRecord(Record records) {
         try(Connection conn = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASSWORDS)  ) {
             String addPrdtSQL = "INSERT INTO products(consgnorName, items, artitsName, title, sellsPrice"+
                     ") VALUES (?,?,?,?, ?)";
@@ -89,8 +89,8 @@ public class RecordsDB {
 
     }
 
-    public ArrayList<Records> fetchAllRecords() {
-        ArrayList<Records> allRecords= new ArrayList<>();
+    public ArrayList<Record> fetchAllRecords() {
+        ArrayList<Record> allRecords= new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASSWORDS);
              Statement statement = conn.createStatement()) {
             String selctALLSQL = "SELECT * FROM "+ TABLE_NAME;
@@ -121,6 +121,7 @@ public class RecordsDB {
 
 
         }
+
 
 
 }
