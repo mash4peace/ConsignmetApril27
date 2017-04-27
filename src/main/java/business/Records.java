@@ -1,6 +1,7 @@
 package business;
 
 import java.text.NumberFormat;
+import java.util.Date;
 
 /**
  * Created by mash4 on 4/25/2017.
@@ -13,14 +14,18 @@ public class Records {
     private String title;
     private double sellsPrice;
 
+    Date date = new Date();
+
+
     private static int tickedID = 1;
 
 
-    public Records(String consName, int numberOfitems, String artist, String title, double sellingPrx) {
+    public Records(String consName, int numberOfitems, String artist, String title, double sellingPrx, Date date) {
         this.consignorName = consName;
         this.numberOfItems = numberOfitems;
         this.artist = artist;
         this.title = title;
+        this.date = date;
         this.sellsPrice = sellingPrx;
         this.consignorID = tickedID;
         tickedID ++;
@@ -82,6 +87,10 @@ public class Records {
         this.sellsPrice = numberOfItems * sellsPrice;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     public String getPriceFormatted(){
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
         return currencyFormat.format(getSellsPrice());
@@ -95,6 +104,7 @@ public class Records {
                 ", numberOfItems= " + numberOfItems +
                 ", artist=' " + artist + '\'' +
                 ", title=' " + title + '\'' +
-                ", sellsPrice= " + sellsPrice ;
+                ", sellsPrice= " + sellsPrice +
+                ", Date " + date;
     }
 }

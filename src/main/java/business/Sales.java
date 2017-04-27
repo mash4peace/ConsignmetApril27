@@ -3,16 +3,21 @@ package business;
 /**
  * Created by mash4 on 4/25/2017.
  */
-public class Sales extends Records {
+public class Sales  {
+    String consName;
+    int consignID;
     double totalPayment;
     double paidAmount;
     double unpaidAmount;
     double totalAmount;
 
-    public Sales(String consName, int numberOfitems, String artist,
+    public Sales(String consName,int consID, int numberOfitems, String artist,
                  String title, double sellingPrx,
                  double totalAmount, double paidAmount, double unpaidAmount ) {
-        super(consName,numberOfitems, artist, title, sellingPrx );
+        this.consName = consName;
+        this.consignID = consID;
+
+
 
     }
 
@@ -44,15 +49,14 @@ public class Sales extends Records {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = getNumberOfItems() * getSellsPrice();
-    }
+
+
 
     @Override
     public String toString() {
         return "Sales Records " +
-                " Consignor Name " + getConsignorName()+
-                ", Consignor ID " + getConsignorID()+
+                " Consignor Name " + consName+
+                ", Consignor ID " + consignID +
                 ", totalPayment=   " + totalAmount  +
                 ", paidAmount=  " + paidAmount +
                 ", unpaidAmount=  " + unpaidAmount;

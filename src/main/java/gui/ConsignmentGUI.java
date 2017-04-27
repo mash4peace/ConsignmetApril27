@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by mash4 on 4/25/2017.
@@ -74,7 +75,8 @@ public class ConsignmentGUI extends JFrame {
                         JOptionPane.showMessageDialog(ConsignmentGUI.this, "Enter a psoitive number ");
                         return;
                     }
-                    Records r = new Records(name,intItem, artist, title, sellingPrx);
+                    Date date = new Date();
+                    Records r = new Records(name,intItem, artist, title, sellingPrx, date);
                     consignmentListModel.addElement(r);
                     cntr.addRecods(r);
 
