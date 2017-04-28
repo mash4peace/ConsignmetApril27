@@ -24,6 +24,7 @@ public class Controller {
     private void startApp() {
         rdb = new RecordDB();
         rdb.createTable();
+        sdb = new SaleDB();
         sdb.createsSaleTable();
 
         ArrayList<Record> allInfo = rdb.fetchAllRecords();

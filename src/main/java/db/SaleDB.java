@@ -15,7 +15,8 @@ public class SaleDB {
     private static final String USER = ("mash4peace");
     private  static final String PASSWORDS = System.getenv("MYSQL_pw");
     private static final String TABLE_NAME = "sales";
-    private static final String CONSIGNORID_COL = "consgnrID";
+    private static final String SALEID_COL = "saleID";
+    private static final String SALECONSIGNORID_COL = "saleconsgnrID";
     private static final String CONSIGNOrName_COL = "consgnorName";
     private static final String NUMBERofITEMS_COL = "items";
     private static final String SELLSpRX_COL = "sellsPrice";
@@ -43,13 +44,17 @@ public class SaleDB {
         try(Connection conn = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASSWORDS);
             Statement statement = conn.createStatement()){
             String createTablesSQLTEM =
-                    "CREATE TABLE IF NOT EXISTS %sales ("+ " consgnrID INTEGER NOT NULL AUTO_INCREMENT,"+
-                            " consgnorName VARCHAR(100) NOT NULL"+ ", items INTEGER " + ", sellsPrice DOUBLE " +
-                            " totalAmountDue DOUBLE "+ " paidAmount DOUBLE "+ " unPaidAmoun DOUBLE " ;
-            String createTableSQl = String.format(createTablesSQLTEM, TABLE_NAME, CONSIGNORID_COL, CONSIGNOrName_COL,
+                    "CREATE TABLE IF NOT EXISTS sales( saleID INTEGER NOT NULL AUTO_INCREMENT,  saleconsgnrID INTEGER NOT NULL  ,"+
+                            " consgnorName VARCHAR(100) NOT NULL, items INTEGER, sellsPrice DOUBLE " +
+                            ", totalAmountDue DOUBLE, paidAmount DOUBLE , unPaidAmoun DOUBLE, consgnrID INT NOT NULL, " +
+                            "Primary Key(saleID), Foreign Key(saleconsgnrID, consgnorName, items, sellsPrice) REFERENCES products" +
+                            "(consgnrID, consgnorName, items,sellsPrice  ) ON UPDATE CASCADE ON DELETE RESTRICT)" ;
+            String createTableSQl = String.format(createTablesSQLTEM, TABLE_NAME, SALECONSIGNORID_COL, CONSIGNOrName_COL,
                     NUMBERofITEMS_COL, SELLSpRX_COL, TOTALAMOUNTDUE_COL, PAIDAMOUNT_COL, UNPAIDAMOUNT_COL);
+            System.out.println(createTablesSQLTEM);
             System.out.println(createTableSQl);
-            System.out.println("Sale table is created ");
+            //System.out.println("Sale table is created ");
+            statement.executeUpdate(createTableSQl);
             statement.close();
             conn.close();
 

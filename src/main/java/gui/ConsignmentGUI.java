@@ -21,6 +21,7 @@ public class ConsignmentGUI extends JFrame {
     private JComboBox numberOfItemscomboBox;
     private JButton addConsignorButton;
     private JTextField sellingPrxtextField;
+    private JButton saleItemButton;
     private DefaultListModel consignmentListModel;
 
     //private Controller contr;
@@ -93,6 +94,16 @@ public class ConsignmentGUI extends JFrame {
         });
 
 
+        saleItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(consignmentListModel.isEmpty()){
+                    JOptionPane.showMessageDialog(ConsignmentGUI.this, "Please there is no an item to sale ");
+                    return;
+                }
+
+            }
+        });
     }
 
 
